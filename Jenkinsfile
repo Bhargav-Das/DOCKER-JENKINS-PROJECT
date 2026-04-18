@@ -2,18 +2,11 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "bhargavdas2005/myapp"
+        IMAGE_NAME = "bhargavdas2005/docker-jenkins-project"
         TAG = "latest"
     }
 
     stages {
-
-        stage('Clone Source') {
-            steps {
-                git branch: 'main',
-                url: 'https://github.com/Bhargav-Das/DOCKER-JENKINS-PROJECT'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
@@ -37,16 +30,6 @@ pipeline {
             steps {
                 sh 'docker push $IMAGE_NAME:$TAG'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build and Push Successful!'
-        }
-
-        failure {
-            echo 'Pipeline Failed!'
         }
     }
 }

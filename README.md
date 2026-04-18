@@ -1,8 +1,14 @@
-# Docker CI/CD Pipeline using Jenkins
+# Docker CI/CD Pipeline using Jenkins + GitHub Actions
 
 ## Project Overview
 
-This project demonstrates an automated CI/CD pipeline using **Jenkins**, **Docker**, **GitHub**, and **Docker Hub**. Whenever source code is updated in the GitHub repository, Jenkins can pull the latest code, build a Docker image, authenticate with Docker Hub, and push the latest image automatically.
+This project demonstrates an automated CI/CD pipeline using **Jenkins**, **GitHub Actions**, **Docker**, **GitHub**, and **Docker Hub**. Whenever source code is updated in the GitHub repository, the pipeline automatically builds a Docker image, authenticates with Docker Hub, and pushes the latest image.
+
+This project shows two modern automation methods:
+
+- **Jenkins Pipeline**
+- **GitHub Actions Workflow**
+
 
 ## Objective
 
@@ -10,27 +16,33 @@ To automate the software build and container image delivery process using DevOps
 
 ## Tools & Technologies Used
 
-* Jenkins (Pipeline Automation)
-* Docker (Containerization)
-* Git & GitHub (Source Control)
-* Docker Hub (Image Registry)
-* VS Code (Development Environment)
-* WSL / Linux Terminal
-* Python Flask (Sample App)
+- Jenkins (Pipeline Automation)
+- GitHub Actions (CI/CD Workflow)
+- Docker (Containerization)
+- Git & GitHub (Source Control)
+- Docker Hub (Image Registry)
+- VS Code (Development Environment)
+- WSL / Linux Terminal
+- Python Flask (Sample App)
 
 ## Project Architecture
 
 1. Developer pushes code to GitHub.
-2. Jenkins fetches the repository.
-3. Jenkins reads `Jenkinsfile`.
-4. Jenkins builds Docker image.
-5. Jenkins logs in to Docker Hub using stored credentials.
-6. Jenkins pushes the image to Docker Hub.
+2. Jenkins or GitHub Actions gets triggered.
+3. Workflow reads configuration file.
+4. Docker image is built.
+5. Docker Hub login is performed securely.
+6. Docker image is pushed automatically.
+
 
 ## Repository Structure
 
 ```text
 DOCKER-JENKINS-PROJECT/
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml
+├── images/
 ├── app.py
 ├── requirements.txt
 ├── Dockerfile
@@ -40,9 +52,20 @@ DOCKER-JENKINS-PROJECT/
 
 ## Source Files
 
-### app.py
+## app.py
 
 Python Flask sample application.
+
+```app.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Docker CI/CD Running Successfully!"
+
+app.run(host='0.0.0.0', port=5000)
+'''
 
 ### requirements.txt
 
@@ -50,7 +73,7 @@ Python Flask sample application.
 flask
 ```
 
-### Dockerfile
+## Dockerfile
 
 ```dockerfile
 FROM python:3.10
@@ -61,7 +84,7 @@ EXPOSE 5000
 CMD ["python", "app.py"]
 ```
 
-### Jenkinsfile
+## Jenkinsfile
 
 ```groovy
 pipeline {
@@ -99,8 +122,44 @@ pipeline {
     }
 }
 ```
+## GitHub Actions Workflow
 
-## Jenkins Configuration Steps
+File Location
+
+```.github/workflows/ci-cd.yml```
+
+## CI-CD.yml 
+
+```CI-CD
+name: Docker CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Build Docker Image
+        run: docker build -t bhargavdas2005/docker-jenkins-project:latest .
+
+      - name: Push Docker Image
+        run: docker push bhargavdas2005/docker-jenkins-project:latest
+```
+
+### Jenkins Configuration Steps
 
 1. Install Jenkins in Docker container.
 2. Install required plugins:
@@ -123,7 +182,7 @@ pipeline {
 
 ```bash
 git add .
-git commit -m "Added Jenkins pipeline"
+git commit -m "Added Jenkins + GitHub Actions pipeline"
 git push origin main
 ```
 
@@ -131,6 +190,8 @@ git push origin main
 
 ```text
 Finished: SUCCESS
+Workflow completed successfully
+Docker image pushed successfully
 ```
 
 Docker image pushed successfully to Docker Hub:

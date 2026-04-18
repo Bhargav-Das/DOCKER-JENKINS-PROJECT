@@ -230,6 +230,7 @@ bhargavdas2005/docker-jenkins-project:latest
 * Docker image creation and registry push
 * Jenkins credentials management
 * SCM integration with GitHub
+* GitHub Actions workflow automation
 * Real-world DevOps automation process
 
 ## Viva Questions & Answers
@@ -238,15 +239,17 @@ bhargavdas2005/docker-jenkins-project:latest
 
 Jenkins is an open-source automation server used for CI/CD pipelines.
 
-### Q2. Why Docker is used?
+### Q32. What is GitHub Actions?
+
+### Q3. Why Docker is used?
 
 Docker packages applications with dependencies into portable containers.
 
-### Q3. What is CI/CD?
+### Q4. What is CI/CD?
 
 Continuous Integration and Continuous Delivery automate build, test, and deployment processes.
 
-### Q4. Why use credentials in Jenkins?
+### Q5. Why use credentials in Jenkins?
 
 To securely store usernames, passwords, and tokens.
 
@@ -256,7 +259,7 @@ To securely store usernames, passwords, and tokens.
 Build Status      : SUCCESS
 Docker Image Name : bhargavdas2005/docker-jenkins-project:latest
 Repository        : GitHub + Docker Hub
-Automation Tool   : Jenkins
+Automation Tool   : Jenkins + GitHub Actions
 ```
 
 ## Conclusion

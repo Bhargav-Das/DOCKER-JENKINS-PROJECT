@@ -222,6 +222,11 @@ bhargavdas2005/docker-jenkins-project:latest
 <img src="images/github-repo.png" width="900">
 </p>
 
+## GitHub Live Actions
+<p align="center">
+<img src="images/Screenshot 2026-04-18 212208.png" width="900">
+</p>
+
 > Create an `images/` folder in the repository root and place all screenshots there before pushing to GitHub.
 
 ## Learning Outcomes

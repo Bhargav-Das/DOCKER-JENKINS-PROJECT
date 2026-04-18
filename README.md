@@ -139,39 +139,27 @@ Docker image pushed successfully to Docker Hub:
 bhargavdas2005/docker-jenkins-project:latest
 ```
 
-## Project Screenshots
+# 📸 Project Screenshots
 
-### 1. Jenkins Pipeline Successful Build
+## Jenkins Successful Build
+<p align="center">
+<img src="images/jenkins-success.png" width="900">
+</p>
 
-*Add screenshot file: `images/jenkins-success.png`*
+## Console Output
+<p align="center">
+<img src="images/console-success.png" width="900">
+</p>
 
-```md
-![Jenkins Success](images/jenkins-success.png)
-```
+## Docker Hub Repository
+<p align="center">
+<img src="images/dockerhub-repo.png" width="900">
+</p>
 
-### 2. Jenkins Console Output (Finished: SUCCESS)
-
-*Add screenshot file: `images/console-success.png`*
-
-```md
-![Console Output](images/console-success.png)
-```
-
-### 3. Docker Hub Repository (Image Pushed Successfully)
-
-*Add screenshot file: `images/dockerhub-repo.png`*
-
-```md
-![Docker Hub](images/dockerhub-repo.png)
-```
-
-### 4. GitHub Repository Structure
-
-*Add screenshot file: `images/github-repo.png`*
-
-```md
-![GitHub Repo](images/github-repo.png)
-```
+## GitHub Repository
+<p align="center">
+<img src="images/github-repo.png" width="900">
+</p>
 
 > Create an `images/` folder in the repository root and place all screenshots there before pushing to GitHub.
 
